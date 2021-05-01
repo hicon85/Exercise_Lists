@@ -1,0 +1,38 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace _02.Change_List
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            List<int> numbers = Console.ReadLine()
+                  .Split()
+                  .Select(int.Parse)
+                  .ToList();
+
+            string command = Console.ReadLine();
+
+            while (command != "end")
+            {
+                string[] cmdAr = command.Split();
+                string goodJob = cmdAr[0];
+                int elemtns = int.Parse(cmdAr[1]);
+
+                if(goodJob == "Delete")
+                {
+                    numbers.RemoveAll(x => x == elemtns);
+                }
+                else if(goodJob == "Insert")
+                {
+                    int currentNumber = int.Parse(cmdAr[2]);
+                    numbers.Insert(currentNumber, elemtns);
+                }
+                command = Console.ReadLine();
+            }
+            Console.WriteLine(string.Join(" ",numbers));
+        }
+    }
+}
