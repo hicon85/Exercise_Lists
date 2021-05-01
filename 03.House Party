@@ -1,0 +1,47 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace _03.House_Party
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int n = int.Parse(Console.ReadLine());
+
+            List<string> command = new List<string>();
+
+            for (int i = 0; i < n; i++)
+            {
+                string[] cmdAr = Console.ReadLine().Split();
+
+                string goust = cmdAr[0];
+
+                if(cmdAr.Length > 3)
+                {
+                    if (command.Contains(goust))
+                    {
+                        command.Remove(goust);
+                    }
+                    else
+                    {
+                        Console.WriteLine($"{goust} is not in the list!");
+                    }
+                }
+                else
+                {
+                    if (!command.Contains(goust))
+                    {
+                        command.Add(goust);
+                    }
+                    else
+                    {
+                        Console.WriteLine($"{goust} is already in the list!");
+                    }
+                }
+            }
+            Console.WriteLine(string.Join(Environment.NewLine,command));
+        }
+    }
+}
