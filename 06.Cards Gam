@@ -1,0 +1,54 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace _06.Cards_Game
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            List<int> firstPlayers = Console.ReadLine()
+                .Split()
+                .Select(int.Parse)
+                .ToList();
+
+            List<int> secondsPlayers = Console.ReadLine()
+                .Split()
+                .Select(int.Parse)
+                .ToList();
+
+            while (true)
+            {
+                if(firstPlayers[0] > secondsPlayers[0])
+                {
+                    firstPlayers.Add(firstPlayers[0]);
+                    firstPlayers.Add(secondsPlayers[0]);
+                }
+                else if(firstPlayers[0] < secondsPlayers[0])
+                {
+                    secondsPlayers.Add(secondsPlayers[0]);
+                    secondsPlayers.Add(firstPlayers[0]);
+                }
+
+                firstPlayers.Remove(firstPlayers[0]);
+                secondsPlayers.Remove(secondsPlayers[0]);
+
+                if(firstPlayers.Count == 0)
+                {
+                    int sum = secondsPlayers.Sum();
+                    Console.WriteLine($"Second player wins! Sum: {sum}");
+                    break;
+                }
+                else if(secondsPlayers.Count==0)
+                {
+                    int sum = firstPlayers.Sum();
+                    Console.WriteLine($"First player wins! Sum: {sum}");
+                    break;
+                }
+            }
+
+        }
+    }
+}
